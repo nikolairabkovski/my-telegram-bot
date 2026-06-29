@@ -6,7 +6,7 @@ import sqlite3
 
 # -------- Получение токена --------
 # Токен должен быть задан в переменной окружения BOT_TOKEN (на Render)
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = os.getenv("8216947861:AAHvMJz0ZwkEP4ovH5OX9tXepuhyHvPkrpo")
 if not TOKEN:
     print("❌ Ошибка: переменная окружения BOT_TOKEN не задана!")
     print("Пожалуйста, добавьте её в настройках Render (Environment Variables).")
