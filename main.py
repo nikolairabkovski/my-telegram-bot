@@ -2,7 +2,7 @@ import os
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot("7759838197:AAF2MXrM4gqbjQh47_HrBpJFIdZn3jST6Cw")
+bot = telebot.TeleBot("7759838197:AAHNQDNh9xu3skR-XetU4DbP7TKtJ2UiD_I")
 
 
 # Реагируем на текст "привет", "Привет" или команду /start
