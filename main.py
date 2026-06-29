@@ -2,9 +2,8 @@ import os
 import telebot
 from telebot import types
 
-# Хостинг сам передаст токен из настроек в эту переменную
-BOT_TOKEN = os.environ.get('7759838197:AAF2MXrM4gqbjQh47_HrBpJPIdZn3jST6Cw')
-bot = telebot.TeleBot(BOT_TOKEN)
+bot = telebot.TeleBot("7759838197:AAF2MXrM4gqbjQh47_HrBpJFIdZn3jST6Cw")
+
 
 # Реагируем на текст "привет", "Привет" или команду /start
 @bot.message_handler(func=lambda message: message.text.lower() == 'привет' or message.text == '/start')
