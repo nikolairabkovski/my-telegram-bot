@@ -5,18 +5,16 @@ from telebot import types
 import sqlite3
 
 # -------- Получение токена --------
-# Токен должен быть задан в переменной окружения BOT_TOKEN (на Render)
-TOKEN = os.getenv("8216947861:AAHvMJz0ZwkEP4ovH5OX9tXepuhyHvPkrpo")
+TOKEN = os.getenv("BOT_TOKEN")
 if not TOKEN:
     print("❌ Ошибка: переменная окружения BOT_TOKEN не задана!")
     print("Пожалуйста, добавьте её в настройках Render (Environment Variables).")
-    exit(1)  # остановка, если токена нет
+    exit(1)
 
 bot = telebot.TeleBot(TOKEN)
 
 # -------- База данных (SQLite) --------
 def init_db():
-    # Если используете Persistent Disk на Render, измените путь, например: '/data/bot_stats.db'
     conn = sqlite3.connect('bot_stats.db')
     cursor = conn.cursor()
     cursor.execute('''
@@ -45,10 +43,9 @@ def update_stats(user_id, name, field):
     conn.commit()
     conn.close()
 
-init_db()  # создаём таблицу при старте
+init_db()
 
-# -------- Обработчики команд --------
-
+# -------- Обработчики --------
 @bot.message_handler(func=lambda message: message.text.lower() == 'привет' or message.text == '/start')
 def welcome(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -108,5 +105,7 @@ def i_am_cool(message):
     bot.reply_to(message, response, parse_mode='Markdown')
 
 if __name__ == '__main__':
+    # Убираем возможный вебхук, чтобы избежать конфликтов
+    bot.remove_webhook()
     print("✅ Бот успешно запущен и слушает сервер...")
     bot.infinity_polling()
